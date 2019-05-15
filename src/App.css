@@ -31,3 +31,14 @@
     transform: rotate(360deg);
   }
 }
+
+h3 {
+  font-size: 28px;
+  color: #666;
+}
+
+ul,li{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
