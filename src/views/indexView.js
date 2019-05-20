@@ -1,8 +1,17 @@
 import React,{Component} from 'react';
-import {Link} from 'react-router-dom'
+// import {Link} from 'react-router-dom'
 import './indexView.sass'
 import imgArrow from '../assets/img/arrow.png'
 
+const componentList = [{
+  name: 'button',
+  desc: 'Button',
+  path: '/buttonView'
+},{
+  name: 'toast',
+  desc: 'Toast',
+  path: '/buttonView'
+}]
 export default class IndexView extends Component {
     constructor(props){
         super(props)
@@ -10,23 +19,29 @@ export default class IndexView extends Component {
         this.onClickList = this.onClickList.bind(this)
     }
 
-    onClickList = ()=>{
-        console.log(11111)
-        this.props.history.push('/buttonView')
+    onClickList = (name)=>{
+        console.log('name',name)
+        componentList.filter(item => {
+          if(item.name === name) return this.props.history.push(item.path)
+          return false
+        })
     }
+
   render(){
     return (
       <div className="view-index-page">
           <h3>Super UI Touch Components</h3>
           <ul>
-            <li onClick={this.onClickList}>
-              <span>Button</span>
-              <img alt="arrow" src ={imgArrow}/>
-            </li>
-            <li onClick={this.onClickList}>
-              <span>Toast</span>
-              <img alt="arrow" src ={imgArrow}/>
-            </li>
+            {
+              componentList.map((list,key) =>{
+                return (
+                  <li key={key} onClick={() =>this.onClickList(list.name)}>
+                    <span>{list.desc}</span>
+                    <img alt="arrow" src ={imgArrow}/>
+                  </li>
+                )
+              })
+            }
             {/* <li><Link to='/buttonView'>button组件</Link></li> */}
           </ul>
       </div>
