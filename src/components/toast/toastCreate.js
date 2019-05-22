@@ -1,45 +1,40 @@
-import React from 'react';
-import ReactDom from 'react-dom'
-import Toast from './toast.js'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Toast from './toast'
 import './toast.sass'
 
-function createToast(){
-    const divEle = document.createElement('div')
-    document.body.appendChild(divEle)
-
-    const toastCont = ReactDom.render(<Toast />,divEle)
-
+function createNotification() {
+    const div = document.createElement('div')
+    document.body.appendChild(div)
+    const notification = ReactDOM.render(<Toast />, div)
     return {
-        addToast(toast){
-            return toastCont.addToast(toast)
+        addNotice(notice) {
+            return notification.addNotice(notice)
         },
-        destroy(){
-            ReactDom.unmountComponentAtNode(divEle)
-            document.body.removeChild(divEle)
+        destroy() {
+            ReactDOM.unmountComponentAtNode(div)
+            document.body.removeChild(div)
         }
     }
 }
 
-let toastCont
-
-const toast = (type, content, duration = 2000, onClose) => {
-  
-    if (!toastCont) toastCont = createToast()
-    console.log('toastCont',toastCont)
-    return toastCont.addToast({ type, content, duration, onClose })
+let notification
+const notice = (type, content, duration = 2000, onClose) => {
+    if (!notification) notification = createNotification()
+    return notification.addNotice({ type, content, duration, onClose })
 }
 
 export default {
     info(content, duration, onClose) {
-        return toast('info', content, duration, onClose)
+        return notice('info', content, duration, onClose)
     },
     success(content = '操作成功', duration, onClose) {
-        return toast('success', content, duration, onClose)
+        return notice('success', content, duration, onClose)
     },
     error(content, duration , onClose) {
-        return toast('error', content, duration, onClose)
+        return notice('error', content, duration, onClose)
     },
     loading(content = '加载中...', duration = 0, onClose) {
-        return toast('loading', content, duration, onClose)
+        return notice('loading', content, duration, onClose)
     }
 }

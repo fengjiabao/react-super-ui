@@ -2,6 +2,7 @@ import React,{Component,Fragment} from 'react';
 import Toast from '../../components/toast/toastCreate'
 import { CSSTransition } from 'react-transition-group'
 import '../../assets/commonSass/animate.sass'
+import './toastView.sass'
 
 export default class toastView extends Component {
   constructor(props) {
@@ -12,8 +13,13 @@ export default class toastView extends Component {
   }
   
   showToast = () =>{
-      console.log(1111)
-    Toast.info('点了我',5000)
+    Toast.info('这是一段很长很长的提示～，我游啊游～～游啊游～',3000)
+  }
+
+  componentDidMount = () =>{
+     setTimeout(() => {
+        Toast.info('这是一段很长很长的提示～，我游啊游～～游啊游～',3000)
+     }, 1500);
   }
 
   render(){
@@ -27,9 +33,9 @@ export default class toastView extends Component {
           // onEntered={el => {el.style.color = 'blue'}}
           appear={true}
         >
-        <div>
-          <h3 onClick={() => this.showToast()}>这是toast组件示例～</h3>
-           <div >点我</div>
+        <div className='toast-view'>
+          <h3 >这是toast组件示例～</h3>
+          <div className="toast-btn" onClick={() => this.showToast()}>点我出现toast</div>
         </div>
         </CSSTransition>
       </Fragment>

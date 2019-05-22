@@ -1,44 +1,42 @@
-import React, {Component} from 'react'
+import React, { Component,Fragment } from 'react'
+import { CSSTransition } from 'react-transition-group'
+import '../../assets/commonSass/animate.sass'
 
-class Toast extends Component {
-    constructor(props){
-        super(props)
-
+class ToastBox extends Component {
+    constructor() {
+        super()
         this.transitionTime = 300
-        this.state = {
-            toasts: []
-        }
-
-        this.removeToast = this.removeToast.bind(this)
+        this.state = { notices: [],show: true }
+        this.removeNotice = this.removeNotice.bind(this)
     }
 
-    getToastKey = () =>{
-        const { toasts } = this.state
-        // console.log('this.state', this.state)
-        return `toast-${new Date().getTime()}-${toasts.length}`
+    getNoticeKey() {
+        const { notices } = this.state
+        return `notice-${new Date().getTime()}-${notices.length}`
     }
 
-    addToast = (toast) =>{
-        const { toasts } = this.state
-        toast.key = this.getToastKey()
+    addNotice(notice) {
+        const { notices } = this.state
+        notice.key = this.getNoticeKey()
 
-        toasts.push(toast);//展示所有的提示
-        // toasts[0] = toast;//仅展示最后一个提示
-        console.log(toasts)
-        if (toast.duration > 0) {
+        // notices.push(notice);//展示所有的提示
+        notices[0] = notice;//仅展示最后一个提示
+        
+        this.setState({ notices })
+        if (notice.duration > 0) {
             setTimeout(() => {
-                this.removeToast(toast.key)
-            }, toast.duration)
+                this.removeNotice(notice.key)
+            }, notice.duration)
         }
-        return () => { this.removeToast(toast.key) }
+        return () => { this.removeNotice(notice.key) }
     }
 
-    removeToast = (key) =>{
-        const { toasts } = this.state
+    removeNotice(key) {
+        const { notices } = this.state
         this.setState({
-            toasts: toasts.filter((toast) => {
-                if (toast.key === key) {
-                    if (toast.onClose) setTimeout(toast.onClose, this.transitionTime)
+            notices: notices.filter((notice) => {
+                if (notice.key === key) {
+                    if (notice.onClose) setTimeout(notice.onClose, this.transitionTime)
                     return false
                 }
                 return true
@@ -47,28 +45,32 @@ class Toast extends Component {
     }
 
     render() {
-        const { toasts } = this.state
-        // const icons = {
-        //     info: 'toast_info',
-        //     success: 'toast_success',
-        //     error: 'toast_error',
-        //     loading: 'toast_loading'
-        // }
+        const { notices } = this.state
         return (
-            <div className="toast">
-                {
-                    toasts.length > 0 && toasts.map(toast => (
-                        <div className="toast_bg" key={toast.key}>
-                            <div className='toast_box'>
-                                {/* <div className={`toast_icon ${icons[notice.type]}`}></div> */}
-                                <div className='toast_text'>{toast.content}</div> 
+            <Fragment>
+                <CSSTransition
+                in={ this.state.show }
+                timeout={ 1000 }
+                classNames='fade'
+                unmountOnExit
+                // onEntered={el => {el.style.color = 'blue'}}
+                appear={true}
+                >
+                <div className="super-toast">
+                    {
+                        notices.map(notice => (
+                            <div className="toast_bg" key={notice.key}>
+                                <div className='toast_box'>
+                                    <div className='toast_text'>{notice.content}</div> 
+                                </div>
                             </div>
-                        </div>
-                    ))
-                }
-            </div>
+                        ))
+                    }
+                </div>
+                </CSSTransition>
+             </Fragment>
         )
     }
 }
 
-export default Toast
+export default ToastBox
