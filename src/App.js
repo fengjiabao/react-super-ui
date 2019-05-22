@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import './App.css';
 import ButtonView from './views/buttonView/buttonView'
 import IndexView from './views/indexView'
+import ToastView from './views/toastView/toastView'
 
 import {BrowserRouter as Router, Route,Switch} from 'react-router-dom'
 
@@ -12,6 +13,7 @@ export default class App extends Component {
         <Router>
           <Switch>
             <Route path="/buttonView" component={ButtonView}/>
+            <Route path="/toastView" component={ToastView}/>
             <Route path="/" component={IndexView}/>
           </Switch>
        </Router>

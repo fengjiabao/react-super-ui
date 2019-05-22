@@ -10,7 +10,7 @@ const componentList = [{
 },{
   name: 'toast',
   desc: 'Toast',
-  path: '/buttonView'
+  path: '/toastView'
 }]
 export default class IndexView extends Component {
     constructor(props){
@@ -22,8 +22,7 @@ export default class IndexView extends Component {
     onClickList = (name)=>{
         console.log('name',name)
         componentList.filter(item => {
-          if(item.name === name) return this.props.history.push(item.path)
-          return false
+          return item.name === name ? this.props.history.push(item.path) : false
         })
     }
 
