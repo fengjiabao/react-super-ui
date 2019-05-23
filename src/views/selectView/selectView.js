@@ -8,7 +8,7 @@ export default class SingleView extends Component {
 		super(props)
 		this.state = {
       show: true,
-      tag:["男","女"]
+      tag:["男","女","hi"]
 		}
   }
   
