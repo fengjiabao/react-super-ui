@@ -53,13 +53,6 @@ class SingleSelect extends Component {
             )
         })
         return (
-            // <div className="com-btn">
-            //     <div className={ props.isFixed ? `com-btn-flex isFixedBtn`: "com-btn-flex"}>
-            //         {props.showCancel && <button onClick={(e) => this.onClickButton(e,'cancle')} className="btn cancle" style={props.cancelColor ? {color: props.cancelColor} : ''}>{ props.cancleText}</button>}
-            //         {props.showConfirm && <button onClick={(e) => this.onClickButton(e,'confirm')} className="btn confirm" style={props.confirmColor ? {color: props.confirmColor} : ''}>{ props.confirmText }</button>}
-            //     </div>
-            // </div>
-            
             <div className="tag" >
                 {siteElements}
             </div>
