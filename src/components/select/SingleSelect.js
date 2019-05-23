@@ -12,24 +12,10 @@ class SingleSelect extends Component {
     }
 
     static defaultProps = {
-        cancleText: '取消',
-        cancelColor: '#fff',
-        confirmText: '确定',
-        confirmColor: '#fff',
-        showCancel: true,
-        showConfirm: true,
-        isFixed: false,
         tags:[],
     }
 
     static propTypes = {
-        cancleText: PropTypes.string,
-        cancelColor: PropTypes.string,
-        confirmText: PropTypes.string,
-        confirmColor: PropTypes.string,
-        showCancel: PropTypes.bool.isRequired,
-        showConfirm: PropTypes.bool.isRequired,
-        clickButton: PropTypes.func.isRequired,
         tags:PropTypes.array
     }
 
