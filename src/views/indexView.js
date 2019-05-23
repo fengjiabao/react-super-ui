@@ -11,6 +11,11 @@ const componentList = [{
   name: 'toast',
   desc: 'Toast',
   path: '/toastView'
+},
+{
+  name: 'single',
+  desc: 'Single',
+  path: '/singleView'
 }]
 export default class IndexView extends Component {
     constructor(props){
