@@ -15,7 +15,7 @@ class ToastBox extends Component {
         return `notice-${new Date().getTime()}-${notices.length}`
     }
 
-    addNotice(notice) {
+    addNotice(notice,cb) {
         const { notices } = this.state
         notice.key = this.getNoticeKey()
 
@@ -26,6 +26,7 @@ class ToastBox extends Component {
         if (notice.duration > 0) {
             setTimeout(() => {
                 this.removeNotice(notice.key)
+                cb()
             }, notice.duration)
         }
         return () => { this.removeNotice(notice.key) }

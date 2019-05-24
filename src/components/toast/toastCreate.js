@@ -8,8 +8,8 @@ function createNotification() {
     document.body.appendChild(div)
     const notification = ReactDOM.render(<Toast />, div)
     return {
-        addNotice(notice) {
-            return notification.addNotice(notice)
+        addNotice(notice,cb) {
+            return notification.addNotice(notice,cb)
         },
         destroy() {
             ReactDOM.unmountComponentAtNode(div)
@@ -20,8 +20,8 @@ function createNotification() {
 
 let notification
 const notice = (type, content, duration = 2000, onClose) => {
-    if (!notification) notification = createNotification()
-    return notification.addNotice({ type, content, duration, onClose })
+    notification = createNotification()
+    return notification.addNotice({ type, content, duration, onClose },notification.destroy)
 }
 
 export default {

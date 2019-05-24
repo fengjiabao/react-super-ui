@@ -13,7 +13,7 @@ export default class toastView extends Component {
   }
   
   showToast = () =>{
-    Toast.info('这是一段很长很长的提示～，我游啊游～～游啊游～',3000)
+    Toast.info('这是一段很长很长的提示～，我游啊游～～游啊游～',30000)
   }
 
   componentDidMount = () =>{
