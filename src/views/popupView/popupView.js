@@ -3,21 +3,41 @@ import { CSSTransition } from 'react-transition-group'
 import '../../assets/commonSass/animate.sass'
 import ComButton from '../../components/button/button.js'
 import Popup from '../../components/popup/popup.js'
-
-
+import './popupView.sass'
 export default class PopupView extends Component {
   constructor(props) {
     super(props)
     this.state = {
       show: true,
       popupShow: false,
-      direction: ''
+      direction: 'bottom'
     }
   }
 
-  clickButton = () => {
+  clickButton = (e, type) => {
+    let text = e.props.confirmText
+    let direction = ''
+    switch (text) {
+      case 'top':
+        direction = 'top'
+        break
+      case 'bottom':
+        direction = 'bottom'
+        break
+      case 'left':
+        direction = 'left'
+        break
+      case 'right':
+        direction = 'right'
+        break
+      default:
+        break
+    }
+    console.log('direction', direction)
+
     this.setState({
-      popupShow: true
+      popupShow: true,
+      direction: direction
     })
   }
 
@@ -39,14 +59,16 @@ export default class PopupView extends Component {
         >
           <div>
             <h3>这是popup组件示例～</h3>
-            <ComButton isFixed={false} showCancel={false} clickButton={this.clickButton} confirmText='上popup' />
-            <ComButton isFixed={false} showCancel={false} clickButton={this.clickButton} confirmText='下popup' />
-            <ComButton isFixed={false} showCancel={false} clickButton={this.clickButton} confirmText='左popup' />
-            <ComButton isFixed={false} showCancel={false} clickButton={this.clickButton} confirmText='右popup' />
+            {/* <ComButton isFixed={false} showCancel={false} clickButton={this.clickButton} confirmText='top' /> */}
+            <ComButton isFixed={false} showCancel={false} clickButton={this.clickButton} confirmText='bottom' />
+            {/* <ComButton isFixed={false} showCancel={false} clickButton={this.clickButton} confirmText='left' />
+            <ComButton isFixed={false} showCancel={false} clickButton={this.clickButton} confirmText='right' /> */}
 
             <Popup isShow={this.state.popupShow} clickCover={this.clickCover} direction={this.state.direction}>
-              {this.state.popupShow + '111'}
-              <div>112122</div>
+              <div className="demo-popup-content">
+                {this.state.direction}
+                <div>112122</div>
+              </div>
             </Popup>
           </div>
         </CSSTransition>

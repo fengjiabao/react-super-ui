@@ -7,18 +7,21 @@ import './popup.sass'
 class Popup extends Component {
   constructor(props) {
     super(props)
-
-    this.state = {
-      popupClassName: 'popup-bottom'
-    }
+    console.log('props', props)
+    // console.log('111', `popup-${this.props.direction}`)
+    // this.state = {
+    //   popupClassName: `popup-${props.direction}`
+    // }
   }
 
   static defaultProps = {
-    isShow: false
+    isShow: false,
+    direction: ''
   }
 
   static propTypes = {
-    isShow: PropTypes.bool
+    isShow: PropTypes.bool,
+    direction: PropTypes.string
   }
 
   clickCover = () => {
@@ -28,11 +31,9 @@ class Popup extends Component {
   render () {
     return (
       <div className='popup-cont'>
-        {/* {this.props.isShow ? ( */}
         <div className={`cover ${this.props.isShow ? 'fadeShow' : 'fadeHide'} `} onClick={() => this.clickCover()}>
-          <div className={['popup-cont-detail', this.state.popupClassName]}>{this.props.children}</div>
+          <div className={`popup-cont-detail popup-${this.props.direction} ${this.props.isShow ? 'active' : ''} `}>{this.props.children}</div>
         </div>
-        {/* ) : null} */}
       </div>
     )
   }
