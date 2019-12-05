@@ -5,14 +5,9 @@ import './popup.sass'
 
 
 class Popup extends Component {
-  constructor(props) {
-    super(props)
-    console.log('props', props)
-    // console.log('111', `popup-${this.props.direction}`)
-    // this.state = {
-    //   popupClassName: `popup-${props.direction}`
-    // }
-  }
+  // constructor(props) {
+  //   super(props)
+  // }
 
   static defaultProps = {
     isShow: false,

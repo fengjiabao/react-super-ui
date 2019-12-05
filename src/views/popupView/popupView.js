@@ -9,41 +9,66 @@ export default class PopupView extends Component {
     super(props)
     this.state = {
       show: true,
-      popupShow: false,
-      direction: 'bottom'
+      bottomPopupShow: false,
+      bottomDirection: 'bottom',
+      topPopupShow: false,
+      topDirection: 'top',
+      leftPopupShow: false,
+      leftDirection: 'left',
+      rightPopupShow: false,
+      rightDirection: 'right'
     }
   }
 
   clickButton = (e, type) => {
     let text = e.props.confirmText
-    let direction = ''
+    let direction = '', state = {}
     switch (text) {
       case 'top':
         direction = 'top'
+        state = { topPopupShow: true, direction: direction }
         break
       case 'bottom':
         direction = 'bottom'
+        state = { bottomPopupShow: true, direction: direction }
         break
       case 'left':
         direction = 'left'
+        state = { leftPopupShow: true, direction: direction }
         break
       case 'right':
         direction = 'right'
+        state = { rightPopupShow: true, direction: direction }
         break
       default:
         break
     }
     console.log('direction', direction)
+    this.setState(state)
+  }
 
+  clickTopCover = () => {
     this.setState({
-      popupShow: true,
-      direction: direction
+      topPopupShow: false
     })
   }
 
-  clickCover = () => {
+  clickBottomCover = () => {
     this.setState({
-      popupShow: false
+      bottomPopupShow: false
+    })
+  }
+
+
+  clickLeftCover = () => {
+    this.setState({
+      leftPopupShow: false
+    })
+  }
+
+  clickRightCover = () => {
+    this.setState({
+      rightPopupShow: false
     })
   }
 
@@ -59,15 +84,32 @@ export default class PopupView extends Component {
         >
           <div>
             <h3>这是popup组件示例～</h3>
-            {/* <ComButton isFixed={false} showCancel={false} clickButton={this.clickButton} confirmText='top' /> */}
+            <ComButton isFixed={false} showCancel={false} clickButton={this.clickButton} confirmText='top' />
             <ComButton isFixed={false} showCancel={false} clickButton={this.clickButton} confirmText='bottom' />
-            {/* <ComButton isFixed={false} showCancel={false} clickButton={this.clickButton} confirmText='left' />
-            <ComButton isFixed={false} showCancel={false} clickButton={this.clickButton} confirmText='right' /> */}
+            <ComButton isFixed={false} showCancel={false} clickButton={this.clickButton} confirmText='left' />
+            <ComButton isFixed={false} showCancel={false} clickButton={this.clickButton} confirmText='right' />
 
-            <Popup isShow={this.state.popupShow} clickCover={this.clickCover} direction={this.state.direction}>
-              <div className="demo-popup-content">
-                {this.state.direction}
-                <div>112122</div>
+            <Popup isShow={this.state.topPopupShow} clickCover={this.clickTopCover} direction={this.state.topDirection}>
+              <div className="demo-popup-content demo-popup-content-top">
+                {this.state.topDirection}
+              </div>
+            </Popup>
+
+            <Popup isShow={this.state.bottomPopupShow} clickCover={this.clickBottomCover} direction={this.state.bottomDirection}>
+              <div className="demo-popup-content demo-popup-content-bottom">
+                {this.state.bottomDirection}
+              </div>
+            </Popup>
+
+            <Popup isShow={this.state.leftPopupShow} clickCover={this.clickLeftCover} direction={this.state.leftDirection}>
+              <div className="demo-popup-content demo-popup-content-left">
+                {this.state.leftDirection}
+              </div>
+            </Popup>
+
+            <Popup isShow={this.state.rightPopupShow} clickCover={this.clickRightCover} direction={this.state.rightDirection}>
+              <div className="demo-popup-content demo-popup-content-right">
+                {this.state.rightDirection}
               </div>
             </Popup>
           </div>

@@ -69,17 +69,44 @@
   transition: all .5s ease-in
 
 .popup-bottom
-  // height: 0
-  // overflow: hidden
   position: absolute
   bottom: 0
   width: 100%
-  // -webkit-transition: height .5s ease
-  // -moz-transition: height .5s ease
-  // -o-transition: height .5s ease
-  // transition: height .5s ease
   transition: transform 0.5s
   transform: translate(0,100%)
+  height: 100%
+
+  &.active
+    transform: translate(0,0)
+
+.popup-top
+  position: absolute
+  top: 0
+  width: 100%
+  transition: transform 0.5s
+  transform: translate(0,-100%)
+  height: 100%
+
+  &.active
+    transform: translate(0,0)
+
+.popup-left
+  position: absolute
+  left: 0
+  width: 100%
+  transition: transform 0.5s
+  transform: translate(-100%,0)
+  height: 100%
+
+  &.active
+    transform: translate(0,0)
+
+.popup-right
+  position: absolute
+  right: 0
+  width: 100%
+  transition: transform 0.5s
+  transform: translate(100%,0)
   height: 100%
 
   &.active
