@@ -26,6 +26,11 @@ const componentList = [{
   name: 'popup',
   desc: 'Popup',
   path: '/popup'
+},
+{
+  name: 'formList',
+  desc: 'FormList',
+  path: '/formList'
 }]
 export default class IndexView extends Component {
   constructor(props) {
@@ -44,7 +49,7 @@ export default class IndexView extends Component {
   render () {
     return (
       <div className="view-index-page">
-        <h3>Super UI Touch Components</h3>
+        <h3>React Super UI Components</h3>
         <ul>
           {
             componentList.map((list, key) => {
